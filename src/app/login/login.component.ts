@@ -1,5 +1,7 @@
 import { Component, OnInit} from '@angular/core';
-import { Form } from '@angular/forms';
+import { NgForm } from '@angular/forms';
+import { LoginService } from '../login.service';
+import { User } from '../../model/user';
 
 @Component({
   selector: 'app-login',
@@ -7,10 +9,19 @@ import { Form } from '@angular/forms';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  errors: string[] = [];
   flag = false;
-  constructor() { }
+  user = new User;
+  constructor(private _dataService: LoginService) { }
 
   ngOnInit() {
   }
 
+  onSubmitLogin() {
+  }
+
+  onSubmit() {
+
+    this.flag = true;
+  }
 }

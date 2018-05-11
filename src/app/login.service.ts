@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { Http } from '@angular/http';
 import { Injectable } from '@angular/core';
 
 import { User } from './../model/user';
@@ -6,7 +6,7 @@ import { User } from './../model/user';
 @Injectable()
 export class LoginService {
   private base = '/api/auth/';
-  constructor(private http: HttpClient) { }
+  constructor(private http: Http) { }
 
   login(user: User) {
     return this.http.post(this.base + 'login', user);
