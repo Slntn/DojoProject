@@ -11,17 +11,20 @@ import { User } from '../../model/user';
 export class LoginComponent implements OnInit {
   errors: string[] = [];
   flag = false;
-  user = new User;
+  user: User = new User;
   constructor(private _dataService: LoginService) { }
 
   ngOnInit() {
   }
 
-  onSubmitLogin() {
+  onSubmitLogin(user: User) {
   }
 
-  onSubmit() {
-
-    this.flag = true;
+  onSubmit(user: User) {
+    console.log(user);
+    this._dataService.register(user).subscribe(error => {
+      console.log('error registering user', error);
+    });
+   this.flag = true;
   }
 }

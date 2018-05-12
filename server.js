@@ -17,7 +17,7 @@ mongoose.connection.on('connected', () => console.log('connected to MongoDB'));
 mongoose.Promise = global.Promise;
 const { Schema } = mongoose;
 const userSchema = new Schema({
- name: {
+  username: {
     type: String,
     trim: true,
     required: [true, 'The user name is required'],
@@ -27,15 +27,15 @@ const userSchema = new Schema({
   email: {
     type: String,
     trim: true,
-    required: [true, 'The user name is required'],
-    minlength: [6, 'The user name length must be greater than 6'],
+    required: [true, 'The user email is required'],
+    minlength: [6, 'The emsil length must be greater than 6'],
     unique: true
   },
-  password: {
+  pass: {
     type: String,
     trim: true,
-    required: [true, 'The user name is required'],
-    minlength: [6, 'The user name length must be greater than 6'],
+    required: [true, 'The password is required'],
+    minlength: [6, 'The password length must be greater than 6'],
     unique: false
   }
 });
@@ -51,7 +51,7 @@ const userController = {
       .catch(error => console.log(error));
   },
   registration: (req, res) => {
-    user.create(req.body)
+    User.create(req.body)
       .then(user => res.json(user))
       .catch(error => console.log(error));
   }
@@ -61,7 +61,7 @@ app
   .get('/login', userController.login)
   .post('/register', userController.registration)
   .all("*", (req, res, next) => {
-    res.sendFile(path.resolve("./public/dist/index.html"))
+    res.sendFile(path.resolve("./dist/index.html"))
   });
 
 app.listen(port , () => {console.log(`listening on port ${port}`)});
